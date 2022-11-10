@@ -1,5 +1,12 @@
 part of dashboard;
 
+class RRectTween extends Tween<RRect?> {
+  RRectTween({ super.begin, super.end });
+
+  @override
+  RRect? lerp(double t) => RRect.lerp(begin, end, t);
+}
+
 class _AnimatedBackgroundPainter extends StatefulWidget {
   const _AnimatedBackgroundPainter(
       {Key? key,
@@ -22,13 +29,13 @@ class _AnimatedBackgroundPainterState extends State<_AnimatedBackgroundPainter>
   _ViewportDelegate get viewportDelegate =>
       widget.layoutController._viewportDelegate;
 
-  Rect? fillRect;
+  RRect? fillRect;
 
   late double offset;
 
   late AnimationController _animationController;
 
-  Animation<Rect?>? _animation;
+  Animation<RRect?>? _animation;
 
   @override
   void initState() {
@@ -40,7 +47,7 @@ class _AnimatedBackgroundPainterState extends State<_AnimatedBackgroundPainter>
 
   bool onAnimation = false;
 
-  Rect? _last;
+  RRect? _last;
 
   DateTime? _start;
 
@@ -52,8 +59,10 @@ class _AnimatedBackgroundPainterState extends State<_AnimatedBackgroundPainter>
           viewportDelegate: widget.layoutController._viewportDelegate,
           slotEdge: widget.layoutController.slotEdge,
           verticalSlotEdge: widget.layoutController.verticalSlotEdge);
-      var rect = Rect.fromLTWH(pos!.x - viewportDelegate.padding.left,
-          pos.y - offset - viewportDelegate.padding.top, pos.width, pos.height);
+      var rect = RRect.fromRectAndRadius(
+          Rect.fromLTWH(pos!.x - viewportDelegate.padding.left,
+              pos.y - offset - viewportDelegate.padding.top, pos.width, pos.height),
+          Radius.circular(widget.editModeSettings.backgroundStyle.fillRadius));
 
       if (fillRect != null && fillRect != rect) {
         var begin = fillRect!;
@@ -70,7 +79,7 @@ class _AnimatedBackgroundPainterState extends State<_AnimatedBackgroundPainter>
           _animationController.duration = widget.editModeSettings.duration;
         }
         _animationController.reset();
-        _animation = RectTween(begin: begin, end: rect).animate(CurvedAnimation(
+        _animation = RRectTween(begin: begin, end: rect).animate(CurvedAnimation(
             parent: _animationController,
             curve: widget.editModeSettings.curve));
         SchedulerBinding.instance.addPostFrameCallback((timeStamp) {

@@ -1,7 +1,11 @@
-## Fix:
+## Fix
 This repo is a fork that fixes original dashboard package. The bug prevented scrolling the dashboard
 view after init. The fix is done with own scrollable widget implementation that forces missing 
 behavior on widget init.
+
+## Additions
+This repo adds a possibility to get rounded filled rectangles on edit. In the Edit mode background
+style can be specified the corner radius of the editing "shadow" rectangle.
 
 Dynamic dashboard widget that allows your users to create their own layouts. Rezise, move, indirect resize/move, auto  re-layout are supported.
 

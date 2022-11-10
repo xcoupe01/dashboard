@@ -16,7 +16,8 @@ class EditModeBackgroundStyle {
       this.dualLineHorizontal = true,
       this.lineWidth = 0.7,
       this.lineColor = Colors.black54,
-      this.fillColor = Colors.black38});
+      this.fillColor = Colors.black38,
+      this.fillRadius = 15});
 
   @override
   bool operator ==(Object other) {
@@ -45,6 +46,8 @@ class EditModeBackgroundStyle {
 
   /// Line color
   final Color lineColor;
+
+  final double fillRadius;
 
   @override
   int get hashCode => Object.hash(

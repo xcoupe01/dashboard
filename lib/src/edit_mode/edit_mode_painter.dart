@@ -12,7 +12,7 @@ class _EditModeBackgroundPainter extends CustomPainter {
 
   _ViewportDelegate viewportDelegate;
 
-  Rect? fillPosition;
+  RRect? fillPosition;
 
   double offset;
 
@@ -92,7 +92,9 @@ class _EditModeBackgroundPainter extends CustomPainter {
     drawVerticalLines(canvas);
     drawHorizontals(canvas);
     if (fillPosition != null) {
-      canvas.drawRect(fillPosition!, Paint()..color = style.fillColor);
+      Path path = Path();
+      path.addRRect(fillPosition!);
+      canvas.drawPath(path, Paint()..color = style.fillColor);
     }
   }
 

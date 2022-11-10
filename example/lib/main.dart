@@ -211,6 +211,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                 physics: const RangeMaintainingScrollPhysics(),
                 editModeSettings: EditModeSettings(
                     paintBackgroundLines: true,
+                    fillEditingBackground: true,
                     resizeCursorSide: 15,
                     curve: Curves.easeInOutCirc,
                     duration: const Duration(milliseconds: 300),
