@@ -1,3 +1,7 @@
+## Fix:
+This repo is a fork that fixes original dashboard package. The bug prevented scrolling the dashboard
+view after init. The fix is done with own scrollable widget implementation that forces missing 
+behavior on widget init.
 
 Dynamic dashboard widget that allows your users to create their own layouts. Rezise, move, indirect resize/move, auto  re-layout are supported.
 

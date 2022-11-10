@@ -377,7 +377,8 @@ class _DashboardState<T extends DashboardItem> extends State<Dashboard<T>>
         }
       }
 
-      return Scrollable(
+      // Using the implemented fixed flutter widget
+      return ScrollableDragFix(
           physics: scrollable
               ? widget.physics
               : const NeverScrollableScrollPhysics(),
