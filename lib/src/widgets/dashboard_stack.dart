@@ -91,7 +91,7 @@ class _DashboardStackState<T extends DashboardItem>
 
     if (widget.editModeSettings.editAnimationAngle != 0){
       for (var id in _widgetsMap.keys){
-        AnimationController? controller = _widgetsMap[id]![1]!.key.currentState?.controller;
+        AnimationController? controller = _widgetsMap[id]?[1]?.key.currentState?.controller;
         if (controller != null && id != excludeItem && !controller.isAnimating){
           controller.forward();
           controller.addListener(() {
@@ -106,7 +106,7 @@ class _DashboardStackState<T extends DashboardItem>
 
   void stopAllEditingAnimations() {
     for (var id in _widgetsMap.keys){
-      AnimationController? controller = _widgetsMap[id]![1]!.key.currentState?.controller;
+      AnimationController? controller = _widgetsMap[id]?[1]?.key.currentState?.controller;
       if (controller != null){
         controller.stop();
       }
@@ -114,7 +114,7 @@ class _DashboardStackState<T extends DashboardItem>
   }
 
   void stopEditingAnimation(id){
-    AnimationController? controller = _widgetsMap[id]![1]!.key.currentState?.controller;
+    AnimationController? controller = _widgetsMap[id]?[1]?.key.currentState?.controller;
     if (controller != null){
       controller.stop();
     }
