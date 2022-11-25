@@ -463,9 +463,6 @@ class _DashboardStackState<T extends DashboardItem>
       _holdDirections!.contains(direction);
 
   void _onMoveUpdate(Offset local) {
-
-    startAllEditingAnimations();
-
     if (_editing != null) {
       var e = widget.dashboardController._endsTree.lastKey() ?? 0;
 
