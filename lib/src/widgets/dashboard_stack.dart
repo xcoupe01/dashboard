@@ -92,7 +92,7 @@ class _DashboardStackState<T extends DashboardItem>
     if (widget.editModeSettings.editAnimationAngle != 0){
       for (var id in _widgetsMap.keys){
         AnimationController? controller = _widgetsMap[id]![1]!.key.currentState?.controller;
-        if (controller != null && id != excludeItem){
+        if (controller != null && id != excludeItem && !controller.isAnimating){
           controller.forward();
           controller.addListener(() {
             if (controller.isCompleted) {
@@ -463,6 +463,9 @@ class _DashboardStackState<T extends DashboardItem>
       _holdDirections!.contains(direction);
 
   void _onMoveUpdate(Offset local) {
+
+    startAllEditingAnimations();
+
     if (_editing != null) {
       var e = widget.dashboardController._endsTree.lastKey() ?? 0;
 
@@ -510,6 +513,7 @@ class _DashboardStackState<T extends DashboardItem>
 
   void _onMoveEnd() {
     excludeItem = null; // stop excluding item from editing animation
+    startAllEditingAnimations();
     _editing?._key = _keys[_editing!.id]!;
     _editing?._key.currentState
         ?._setLast(

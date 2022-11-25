@@ -31,7 +31,6 @@ class ShakeWidgetState extends State<ShakeWidget>
     super.initState();
     controller = AnimationController(
       duration: widget.duration,
-
       vsync: this,
     );
   }

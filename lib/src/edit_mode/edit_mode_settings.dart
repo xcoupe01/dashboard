@@ -14,7 +14,7 @@ class EditModeSettings {
     this.backgroundStyle = const EditModeBackgroundStyle(),
     //this.foregroundStyle = const EditModeForegroundStyle(),
     this.curve = Curves.easeInOut,
-    this.editAnimationAngle = - 2 * pi / 180,
+    this.editAnimationAngle = 0.5 * pi / 180,
     this.editAnimationDuration = const Duration(milliseconds: 100),
     Duration? duration,
     //this.paintItemForeground = true,
