@@ -4,8 +4,11 @@ view after init. The fix is done with own scrollable widget implementation that 
 behavior on widget init.
 
 ## Additions
-This repo adds a possibility to get rounded filled rectangles on edit. In the Edit mode background
-style can be specified the corner radius of the editing "shadow" rectangle.
+- Added possibility to get rounded filled rectangles on edit. In the edit mode background style can be specified the corner radius of the editing "shadow" rectangle.
+
+- Editing shake animations added and are customizable from editing mode. (The animations are rotations evenly to the right and left, developer can choose the angle and duration of the animation)
+
+# Original Dashboard readme below
 
 Dynamic dashboard widget that allows your users to create their own layouts. Rezise, move, indirect resize/move, auto  re-layout are supported.
 

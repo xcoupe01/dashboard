@@ -6,6 +6,7 @@ import 'dart:math';
 
 import 'package:dashboard/src/widgets/scrollable_dragfix.dart';
 import 'package:dashboard/src/widgets/style.dart';
+import 'package:dashboard/src/widgets/shake_widget.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';

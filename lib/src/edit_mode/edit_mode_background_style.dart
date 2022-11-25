@@ -47,11 +47,12 @@ class EditModeBackgroundStyle {
   /// Line color
   final Color lineColor;
 
+  /// Shadow radius
   final double fillRadius;
 
   @override
   int get hashCode => Object.hash(
-      fillColor, dualLineVertical, dualLineHorizontal, lineWidth, lineColor);
+      fillColor, dualLineVertical, dualLineHorizontal, lineWidth, lineColor, fillRadius);
 }
 
 // class EditModeForegroundStyle {

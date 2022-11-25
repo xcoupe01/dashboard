@@ -85,6 +85,41 @@ class _DashboardStackState<T extends DashboardItem>
     setState(() {});
   }
 
+  String? excludeItem;
+
+  void startAllEditingAnimations() {
+
+    if (widget.editModeSettings.editAnimationAngle != 0){
+      for (var id in _widgetsMap.keys){
+        AnimationController? controller = _widgetsMap[id]![1]!.key.currentState?.controller;
+        if (controller != null && id != excludeItem){
+          controller.forward();
+          controller.addListener(() {
+            if (controller.isCompleted) {
+              controller.repeat(reverse: true);
+            }
+          });
+        }
+      }
+    }
+  }
+
+  void stopAllEditingAnimations() {
+    for (var id in _widgetsMap.keys){
+      AnimationController? controller = _widgetsMap[id]![1]!.key.currentState?.controller;
+      if (controller != null){
+        controller.stop();
+      }
+    }
+  }
+
+  void stopEditingAnimation(id){
+    AnimationController? controller = _widgetsMap[id]![1]!.key.currentState?.controller;
+    if (controller != null){
+      controller.stop();
+    }
+  }
+
   Widget buildPositioned(List list) {
     return _DashboardItemWidget(
       style: widget.itemStyle,
@@ -113,17 +148,23 @@ class _DashboardStackState<T extends DashboardItem>
 
     _widgetsMap[id] = [
       l,
-      Material(
-        elevation: widget.itemStyle.elevation ?? 0.0,
-        type: widget.itemStyle.type ?? MaterialType.card,
-        shape: widget.itemStyle.shape,
-        color: widget.itemStyle.color,
-        clipBehavior: widget.itemStyle.clipBehavior ?? Clip.none,
-        animationDuration:
-            widget.itemStyle.animationDuration ?? kThemeChangeDuration,
-        child: widget.itemBuilder(i),
+      ShakeWidget(
+        key: GlobalKey(),
+        deltaR: widget.editModeSettings.editAnimationAngle,
+        duration: widget.editModeSettings.editAnimationDuration,
+        child: Material(
+          elevation: widget.itemStyle.elevation ?? 0.0,
+          type: widget.itemStyle.type ?? MaterialType.card,
+          shape: widget.itemStyle.shape,
+          color: widget.itemStyle.color,
+          clipBehavior: widget.itemStyle.clipBehavior ?? Clip.none,
+          animationDuration:
+          widget.itemStyle.animationDuration ?? kThemeChangeDuration,
+          child: widget.itemBuilder(i),
         //shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-      ),
+        )
+      )
+      ,
       id,
     ];
 
@@ -169,6 +210,10 @@ class _DashboardStackState<T extends DashboardItem>
       } else {
         break;
       }
+    }
+
+    if(widget.dashboardController.isEditing){
+      startAllEditingAnimations();
     }
 
     var beforeIt = <String>[];
@@ -285,7 +330,7 @@ class _DashboardStackState<T extends DashboardItem>
                 _onMoveEnd();
               }
             : null,
-        child: result,
+        child: result
       );
     }
     return result;
@@ -339,6 +384,10 @@ class _DashboardStackState<T extends DashboardItem>
 
     var e = widget.dashboardController
         ._indexesTree[widget.dashboardController.getIndex([x, y])];
+
+    // start excluding item from editing animation
+    excludeItem = e;
+    stopEditingAnimation(e);
 
     if (e is String) {
       var directions = <AxisDirection>[];
@@ -460,6 +509,7 @@ class _DashboardStackState<T extends DashboardItem>
   }
 
   void _onMoveEnd() {
+    excludeItem = null; // stop excluding item from editing animation
     _editing?._key = _keys[_editing!.id]!;
     _editing?._key.currentState
         ?._setLast(
