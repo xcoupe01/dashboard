@@ -31,6 +31,7 @@ class ShakeWidgetState extends State<ShakeWidget>
     super.initState();
     controller = AnimationController(
       duration: widget.duration,
+
       vsync: this,
     );
   }
@@ -46,7 +47,9 @@ class ShakeWidgetState extends State<ShakeWidget>
     return AnimatedBuilder(
       animation: controller,
       builder: (BuildContext context, Widget? child) => Transform.rotate(
-        angle: widget.deltaR * (widget.curve.transform(controller.value) * 2 - 1),
+        angle: controller.isAnimating ?
+          widget.deltaR * (widget.curve.transform(controller.value) * 2 - 1):
+          0,
         child: child,
       ),
       child: widget.child,
