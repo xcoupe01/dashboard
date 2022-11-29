@@ -152,6 +152,7 @@ class _DashboardStackState<T extends DashboardItem>
         key: GlobalKey(),
         deltaR: widget.editModeSettings.editAnimationAngle,
         duration: widget.editModeSettings.editAnimationDuration,
+        synced: widget.editModeSettings.editAnimationSync,
         child: Material(
           elevation: widget.itemStyle.elevation ?? 0.0,
           type: widget.itemStyle.type ?? MaterialType.card,

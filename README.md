@@ -6,7 +6,7 @@ behavior on widget init.
 ## Additions
 - Added possibility to get rounded filled rectangles on edit. In the edit mode background style can be specified the corner radius of the editing "shadow" rectangle.
 
-- Editing shake animations added and are customizable from editing mode. (The animations are rotations evenly to the right and left, developer can choose the angle and duration of the animation)
+- Editing shake animations added and are customizable from editing mode. (The animations are rotations evenly to the right and left, developer can choose the angle, duration of the animation and if they are in or out of sync).
 
 # Original Dashboard readme below
 

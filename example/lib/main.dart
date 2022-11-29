@@ -214,6 +214,8 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                     fillEditingBackground: true,
                     resizeCursorSide: 15,
                     curve: Curves.easeInOutCirc,
+                    editAnimationAngle: 5 * pi / 180,
+                    editAnimationSync: true,
                     duration: const Duration(milliseconds: 300),
                     backgroundStyle: const EditModeBackgroundStyle(
                         lineColor: Colors.black38,

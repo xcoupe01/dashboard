@@ -3,6 +3,7 @@ Added shake animation while in editing mode.
  */
 
 import 'package:flutter/cupertino.dart';
+import 'dart:math';
 
 class ShakeWidget extends StatefulWidget {
   const ShakeWidget({
@@ -11,12 +12,14 @@ class ShakeWidget extends StatefulWidget {
     required this.deltaR,
     this.curve = Curves.ease,
     required this.child,
+    this.synced = true,
   });
 
   final Duration duration;
   final double deltaR;
   final Widget child;
   final Curve curve;
+  final bool synced;
 
   @override
   ShakeWidgetState createState() => ShakeWidgetState();
@@ -33,6 +36,9 @@ class ShakeWidgetState extends State<ShakeWidget>
       duration: widget.duration,
       vsync: this,
     );
+    if(!widget.synced){
+      controller.value = Random().nextDouble();
+    }
   }
 
   @override

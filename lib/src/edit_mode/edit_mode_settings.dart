@@ -17,6 +17,7 @@ class EditModeSettings {
     this.editAnimationAngle = 0.5 * pi / 180,
     this.editAnimationDuration = const Duration(milliseconds: 100),
     Duration? duration,
+    this.editAnimationSync = true,
     //this.paintItemForeground = true,
     this.shrinkOnMove = true,
   }) : duration = duration ?? kThemeAnimationDuration;
@@ -50,6 +51,9 @@ class EditModeSettings {
 
   /// Editing mode animation duration
   final Duration editAnimationDuration;
+
+  /// Editing mode animation sync
+  final bool editAnimationSync;
 
   ///final bool paintItemForeground = false;
 
