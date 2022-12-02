@@ -8,6 +8,8 @@ behavior on widget init.
 
 - Editing shake animations added and are customizable from editing mode. (The animations are rotations evenly to the right and left, developer can choose the angle, duration of the animation and if they are in or out of sync).
 
+- Added a possibility to start in edit mode (`startInEdit` value for Dashboard).
+
 # Original Dashboard readme below
 
 Dynamic dashboard widget that allows your users to create their own layouts. Rezise, move, indirect resize/move, auto  re-layout are supported.

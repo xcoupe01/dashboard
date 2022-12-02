@@ -33,7 +33,7 @@ class DashboardItemController<T extends DashboardItem> with ChangeNotifier {
   /// The necessary functions of the delegate are triggered on all changes.
   ///
   /// If the delegate is waiting for a Future to load the items, this will throw
-  /// error at the end of the [timout].
+  /// error at the end of the [timeout].
   DashboardItemController.withDelegate(
       {Duration? timeout, required this.itemStorageDelegate})
       : _timeout = timeout ?? const Duration(seconds: 10);

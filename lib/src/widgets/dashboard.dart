@@ -41,6 +41,7 @@ class Dashboard<T extends DashboardItem> extends StatefulWidget {
       this.slideToTop = true,
       this.slotAspectRatio,
       this.slotHeight,
+      this.startInEdit = false,
       EditModeSettings? editModeSettings,
       this.textDirection = TextDirection.ltr,
       this.errorPlaceholder,
@@ -59,6 +60,9 @@ class Dashboard<T extends DashboardItem> extends StatefulWidget {
 
   /// [slotHeight] determines slots height by fixed length.
   final double? slotHeight;
+
+  /// [startInEdit] determines if the dasboard starts in edit mode or not.
+  final bool startInEdit;
 
   /// In edit mode, item position changes due to resizing/moving are animated.
   ///
@@ -210,6 +214,7 @@ class _DashboardState<T extends DashboardItem> extends State<Dashboard<T>>
         }
       });
     }
+    widget.dashboardItemController.isEditing = widget.startInEdit;
     super.initState();
   }
 

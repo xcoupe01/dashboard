@@ -199,6 +199,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                 animateEverytime: true,
                 dashboardItemController: itemController,
                 slotCount: slot!,
+                startInEdit: true,
                 errorPlaceholder: (e, s) {
                   return Text("$e , $s");
                 },
@@ -214,7 +215,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                     fillEditingBackground: true,
                     resizeCursorSide: 15,
                     curve: Curves.easeInOutCirc,
-                    editAnimationAngle: 5 * pi / 180,
+                    editAnimationAngle: 0.5 * pi / 180,
                     editAnimationSync: true,
                     duration: const Duration(milliseconds: 300),
                     backgroundStyle: const EditModeBackgroundStyle(
